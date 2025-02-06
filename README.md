@@ -22,7 +22,7 @@ time = [i / fs for i in range(len(signal))]
 signal = signal[:muestreo]
 time = time[:muestreo]
 ```
-### Adquirir datos
+## Adquirir datos
 En esta sección se explicara detalladamente el funcnionamiento del codigo para compilarlo de manera correcta con cualquier compilador de python.\
 Como se puede observar se utiliza la variable "ruta" que almacena la ruta al archivo de datos EMG.  Esta ruta específica indica que el archivo se encuentra en el escritorio del usuario "sachi" dentro de una carpeta llamada **"examples-of-electromyograms-1.0.0"** y el archivo se llama "emg_neuropathy".\
 Posterior a esto se utiliza la función "wfdb.rdrecord(ruta)" para leer los datos del registro. Esta función de la librería WFDB mencionada anteriormente carga los datos de la señal y otra información asociada (como la frecuencia de muestreo) desde el archivo especificado en ruta. El objeto "record" contiene toda esta información.\
@@ -33,3 +33,14 @@ Posterior a esto se utiliza la función "wfdb.rdrecord(ruta)" para leer los dato
 **time = [i / fs for i in range(len(signal))]**: Crea una lista llamada "time" que representa el eje de tiempo para la señal.  Para cada muestra i en la señal, calcula el tiempo correspondiente dividiendo i por la frecuencia de muestreo fs.  Esto genera una lista de tiempos en segundos.\
 **signal = signal[:muestreo]**: Permite cortar la señal signal para que solo contenga las primeras muestreo muestras.  Esto asegura que solo se utilicen los dos segundos de datos calculados anteriormente.\
 **time = time[:muestreo]**:  De manera similar a la angterior, esta permite cortar la lista de tiempos time para que coincida con la longitud de la señal que se ha cortado. Esto asegura que los tiempos correspondan a las muestras de señal que se están utilizando.\
+Este fragmento de código nos ayudará a cargar los datos del EMG desde un archivo.A extraer la señal y la frecuencia de muestreo a calcular un vector de un tiempo correspondiente y luego a seleccionar los primeros dos segundos de la señal para su posterior análisis o visualización.
+## Cálculos de estadísticos manuales
+### Cálculos de estadísticos con numpy
+En el siguiente código se evidenciará como se obtuvieron cuatro estadísticos descriptivos: Media, Varianza, Desviación estándar, Coeficiente de variación utilizando la libreria numpy de la siguiente manera:
+```ruby
+#Cálculos de estadísticos con numpy
+promnum = np.mean(signal)
+varianum = np.var(signal)
+desvinum = np.std(signal)
+cvarianum = desvinum/promnum
+```
