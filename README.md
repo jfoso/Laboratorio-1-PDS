@@ -104,7 +104,10 @@ plt.legend()
 plt.grid()
 plt.show()
 ```
+![señal_original](https://github.com/user-attachments/assets/7b74ad29-4f1d-4a63-964f-6462f469e16e)
 
 ### Generación de ruido y el SNR
 Para este laboratorio se contaminó la señal con tres tipos de ruido: Gaussiano, de impulso y de artefacto.\
-El ruido Gaussiano está asociado a la radiación electromagnética y es aquel que tiene una distribución normal (tiene una tendencia similar a la campana de Gauss), el ruido de impulso es el que tiene picos de alta amplitud pero de corta duración y el ruido de artefactos es el que producen elementos externos como corrientes eléctricas o, en el caso de la adquisición de señales biológicas, piel o corriente de otro tipo de señales. Para discernir entre cuánto hay de señal y cuánto hay de ruido en la toma de una señal, existe el SNR, el cual por sus siglas en inglés (Signal to Noise Ratio) establece la cantidad de información útil hay en una medición respecto al ruido. Esta relación está dada por la ecuación **SNR = 10*log10(potencia de la señal/potencia del ruido)**
+El ruido Gaussiano está asociado a la radiación electromagnética y es aquel que tiene una distribución normal (tiene una tendencia similar a la campana de Gauss), el ruido de impulso es el que tiene picos de alta amplitud pero de corta duración y el ruido de artefactos es el que producen elementos externos como corrientes eléctricas o, en el caso de la adquisición de señales biológicas, piel o corriente de otro tipo de señales. Para discernir entre cuánto hay de señal y cuánto hay de ruido en la toma de una señal, existe el SNR, el cual por sus siglas en inglés (Signal to Noise Ratio) establece la cantidad de información útil hay en una medición respecto al ruido. Esta relación está dada por la ecuación $SNR = 10*log10(potencia de la señal/potencia del ruido)$
+
+
