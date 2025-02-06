@@ -106,6 +106,27 @@ plt.show()
 ```
 ![señal_original](https://github.com/user-attachments/assets/7b74ad29-4f1d-4a63-964f-6462f469e16e)
 
+### Histograma y función de probabilidad 
+El histograma es la representación gráfica de cuántas veces se repite cierto dato o cierto rango de datos en una señal y muestra como estos están distrubuidos, lo cual indica las tendencias que presenta el conjunto de datos y la función de probabilidad representa qué tan probable es que un dato al azar sea exactamente igual a algún valor de la muestra.\
+En el código se implementaron comandos de la librería numpy para realizar el histograma con una cantidad de 30 intervalos o "cajas" y pyplot para graficar.
+
+```ruby
+#Graficar histograma y funcion de probabilidad
+hist, bins = np.histogram(signal, bins=30, density=True)
+pdf = hist 
+bin_centers = (bins[:-1] + bins[1:]) / 2
+
+plt.figure(figsize=(10,4))
+plt.hist(signal, bins=30, alpha=0.75, color='b', edgecolor='black', density=True)
+plt.plot(bin_centers, pdf, marker='o', linestyle='-', color='r', label="Función de Probabilidad")
+plt.xlabel("Voltaje [mV]")
+plt.ylabel("Frecuencia")
+plt.title("Histograma de la Señal EMG con Neuropatía")
+plt.grid()
+plt.show()
+```
+La funciónn **np.histogram()** realiza el histograma de un arreglo de datos asignado, que en este caso es la variable **signal** 
+
 ### Generación de ruido y el SNR
 Para este laboratorio se contaminó la señal con tres tipos de ruido: Gaussiano, de impulso y de artefacto.\
 El ruido Gaussiano está asociado a la radiación electromagnética y es aquel que tiene una distribución normal (tiene una tendencia similar a la campana de Gauss), el ruido de impulso es el que tiene picos de alta amplitud pero de corta duración y el ruido de artefactos es el que producen elementos externos como corrientes eléctricas o, en el caso de la adquisición de señales biológicas, piel o corriente de otro tipo de señales. Para discernir entre cuánto hay de señal y cuánto hay de ruido en la toma de una señal, existe el SNR, el cual por sus siglas en inglés (Signal to Noise Ratio) establece la cantidad de información útil hay en una medición respecto al ruido. Esta relación está dada por la ecuación $SNR = 10 \times \log_{10}(\frac{potencia de la señal}{potencia del ruido})$
