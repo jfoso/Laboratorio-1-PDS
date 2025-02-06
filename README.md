@@ -22,10 +22,9 @@ time = [i / fs for i in range(len(signal))]
 signal = signal[:muestreo]
 time = time[:muestreo]
 ```
-## Adquirir datos
-En esta sección se explicara detalladamente el funcnionamiento del codigo para compilarlo de manera correcta con cualquier compilador de python.\
-Como se puede observar se utiliza la variable "ruta" que almacena la ruta al archivo de datos EMG.  Esta ruta específica indica que el archivo se encuentra en el escritorio del usuario "sachi" dentro de una carpeta llamada **"examples-of-electromyograms-1.0.0"** y el archivo se llama "emg_neuropathy".\
-Posterior a esto se utiliza la función "wfdb.rdrecord(ruta)" para leer los datos del registro. Esta función de la librería WFDB mencionada anteriormente carga los datos de la señal y otra información asociada (como la frecuencia de muestreo) desde el archivo especificado en ruta. El objeto "record" contiene toda esta información.\
+### Adquirir datos
+En esta sección se explicara detalladamente el funcionamiento del codigo para compilarlo de manera correcta con cualquier compilador de python.\
+Como se puede observar se utiliza la variable "ruta" que es la dirección de la carpeta del archivo de datos EMG obtenido de Physioent.\ 
 **signal = record.p_signal**:  Extrae la señal propiamente dicha del objeto record y la guarda en la variable signal. p_signal suele contener los valores de la señal en sí.  Es un array de NumPy.\
 **fs = record.fs**: Extrae la frecuencia de muestreo (sampling rate) del registro y la guarda en la variable fs. Esta indica cuántas muestras de la señal se tomaron por segundo.\
 **muestreo = int(2*fs)**: Calcula el número de muestras que se van a utilizar.  En este caso, se toman dos segundos de la señal, ya que se multiplica la frecuencia de muestreo (fs) por 2.  El resultado se convierte a entero con int().\
@@ -34,7 +33,32 @@ Posterior a esto se utiliza la función "wfdb.rdrecord(ruta)" para leer los dato
 **signal = signal[:muestreo]**: Permite cortar la señal signal para que solo contenga las primeras muestreo muestras.  Esto asegura que solo se utilicen los dos segundos de datos calculados anteriormente.\
 **time = time[:muestreo]**:  De manera similar a la angterior, esta permite cortar la lista de tiempos time para que coincida con la longitud de la señal que se ha cortado. Esto asegura que los tiempos correspondan a las muestras de señal que se están utilizando.\
 Este fragmento de código nos ayudará a cargar los datos del EMG desde un archivo.A extraer la señal y la frecuencia de muestreo a calcular un vector de un tiempo correspondiente y luego a seleccionar los primeros dos segundos de la señal para su posterior análisis o visualización.
-## Cálculos de estadísticos manuales
+### Cálculos de estadísticos manuales
+Este código calcula manualmente varias estadísticas descriptivas para un conjunto de datos numéricos representados por la variable signal, utilizando bucles for y operaciones aritméticas básicas.
+```ruby
+#Cálculos de estadísticos manuales
+n = len(signal)
+suma = 0
+for i in range (0,n):
+    suma = suma + signal[i]
+    i = i+1
+promma = suma/n
+E = 0
+for i in range (0,n):
+    E = E + (signal[i]-promma)**2
+varianzama = E/(n-1)
+desviama = varianzama**0.5
+cvariama = desviama/promma
+```
+**n = len(signal)**: Se calcula el número total de elementos en la lista "signal" y se almacena en la variable n.\
+**suma = 0**: Se inicializa una variable suma a 0. Esta variable se utilizará para calcular la suma de todos los elementos en "signal".\
+**for i in range(0, n)**: Se inicia un bucle for que repite sobre cada elemento de la lista signal. La variable i representa el índice del elemento actual.\
+**suma = suma + signal[i]**: En cada repetición, el valor del elemento actual signal[i] se añade a la variable suma.\
+**varianzama = E / (n - 1)**: Una vez calculada la suma de los cuadrados de las diferencias, se divide por n - 1 (en lugar de n) para obtener la varianza muestral, que se almacena en la variable "varianzama".\
+**promma = suma / n**: Una vez calculada la suma de todos los elementos, se divide por el número total de elementos n para obtener la media aritmética, que se almacena en la variable promma.\
+**desviama = varianzama ** 0.5**: Se calcula la raíz cuadrada de la varianza varianzama para obtener la desviación estándar, que se almacena en la variable desviama. La desviación estándar mide la dispersión de los datos alrededor de la media.\
+**cvariama = desviama / promma**: Se divide la desviación estándar por la media para obtener el coeficiente de variación, que se almacena en la variable cvariama. El coeficiente de variación es una medida de dispersión relativa que permite comparar la variabilidad de conjuntos de datos con diferentes unidades o escalas.\
+
 ### Cálculos de estadísticos con numpy
 En el siguiente código se evidenciará como se obtuvieron cuatro estadísticos descriptivos: Media, Varianza, Desviación estándar, Coeficiente de variación utilizando la libreria numpy de la siguiente manera:
 ```ruby
@@ -44,3 +68,8 @@ varianum = np.var(signal)
 desvinum = np.std(signal)
 cvarianum = desvinum/promnum
 ```
+**promnum = np.mean(signal)**: Calcula la media aritmética de los elementos de la señal y la almacena. La función np.mean() de NumPy calcula el promedio de los valores en un array.\
+**varianum = np.var(signal)**: Calcula la varianza de los elementos de la señal y la almacena. La varianza es una medida de dispersión que indica cuánto se alejan los valores individuales de la media.\
+**desvinum = np.std(signal)**: Calcula la desviación estándar de los elementos de la señal y la almacena. La desviación estándar es la raíz cuadrada de la varianza y proporciona una medida de dispersión más interpretable en las unidades originales de los datos.\
+**cvarianum = desvinum / promnum**: Calcula el coeficiente de variación de los elementos de la señal y lo almacena. El coeficiente de variación es una medida de dispersión relativa que compara la desviación estándar con la media.\
+Estos estadísticos proporcionan información sobre la tendencia central y la dispersión de los datos en la señal EMG.
