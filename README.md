@@ -57,7 +57,7 @@ cvariama = desviama/promma
 **varianzama = E / (n - 1)**: Una vez calculada la suma de los cuadrados de las diferencias, se divide por n - 1 (en lugar de n) para obtener la varianza muestral, que se almacena en la variable "varianzama".\
 **promma = suma / n**: Una vez calculada la suma de todos los elementos, se divide por el número total de elementos n para obtener la media aritmética, que se almacena en la variable promma.\
 **desviama = varianzama ** 0.5**: Se calcula la raíz cuadrada de la varianza varianzama para obtener la desviación estándar, que se almacena en la variable desviama. La desviación estándar mide la dispersión de los datos alrededor de la media.\
-**cvariama = desviama / promma**: Se divide la desviación estándar por la media para obtener el coeficiente de variación, que se almacena en la variable cvariama. El coeficiente de variación es una medida de dispersión relativa que permite comparar la variabilidad de conjuntos de datos con diferentes unidades o escalas.\
+**cvariama = desviama / promma**: Se divide la desviación estándar por la media para obtener el coeficiente de variación, que se almacena en la variable cvariama. El coeficiente de variación es una medida de dispersión relativa que permite comparar la variabilidad de conjuntos de datos con diferentes unidades o escalas.
 
 ### Cálculos de estadísticos con numpy
 En el siguiente código se evidenciará como se obtuvieron cuatro estadísticos descriptivos: Media, Varianza, Desviación estándar, Coeficiente de variación utilizando la libreria numpy de la siguiente manera:
@@ -73,3 +73,32 @@ cvarianum = desvinum/promnum
 **desvinum = np.std(signal)**: Calcula la desviación estándar de los elementos de la señal y la almacena. La desviación estándar es la raíz cuadrada de la varianza y proporciona una medida de dispersión más interpretable en las unidades originales de los datos.\
 **cvarianum = desvinum / promnum**: Calcula el coeficiente de variación de los elementos de la señal y lo almacena. El coeficiente de variación es una medida de dispersión relativa que compara la desviación estándar con la media.\
 Estos estadísticos proporcionan información sobre la tendencia central y la dispersión de los datos en la señal EMG.
+### Imprimir estadísticos
+Este código muestra una comparación de estadísticas descriptivas (promedio, varianza, desviación estándar y coeficiente de variación) calculadas de dos formas distintas: manualmente y mediante programación. Esto permite verificar si los resultados manuales concuerdan con los obtenidos a través de métodos programación.
+```ruby
+#Imprimir estadísticos
+print("\nEstadísticos descriptivos manuales")
+print("Promedio: ",promma)
+print("Varianza: ",varianzama)
+print("Desviación estándar: ",desviama)
+print("Coeficiente de variación: ",cvariama)
+
+print("\nEstadísticos descriptivos programados")
+print("Promedio: ",promnum)
+print("Varianza: ",varianum)
+print("Desviación estándar: ",desvinum)
+print("Coeficiente de variación: ",cvarianum)
+```
+### Graficar la señal
+Este código utiliza la biblioteca matplotlib.pyplot para crear el gráfico de la señal de EMG con neuropatía de la siguiente forma:
+```ruby
+#Graficar la señal
+plt.figure(figsize=(10,4))
+plt.plot(time, signal, label="Señal EMG")
+plt.title('Señal EMG con Neuropatía')
+plt.xlabel("Tiempo [s]")
+plt.ylabel("Amplitud [mV]")
+plt.legend()
+plt.grid()
+plt.show()
+```
