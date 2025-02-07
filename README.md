@@ -108,16 +108,28 @@ plt.show()
 
 ### Histograma y función de probabilidad 
 El histograma es la representación gráfica de cuántas veces se repite cierto dato o cierto rango de datos en una señal y muestra como estos están distrubuidos, lo cual indica las tendencias que presenta el conjunto de datos y la función de probabilidad representa qué tan probable es que un dato al azar sea exactamente igual a algún valor de la muestra.\
-En el código se implementaron comandos de la librería numpy para realizar el histograma con una cantidad de 30 intervalos o "cajas" y pyplot para graficar.
-
+En el código se implementaron comandos de la librería numpy para realizar el histograma con una cantidad de 30 intervalos o "cajas" y pyplot para graficar.\
+**1. Cálculo del histograma y la función de probabilidad:**
 ```ruby
-#Graficar histograma y funcion de probabilidad
 hist, bins = np.histogram(signal, bins=30, density=True)
-pdf = hist 
+pdf = hist
 bin_centers = (bins[:-1] + bins[1:]) / 2
-
+```
+**bins=30** especifica que se utilizarán 30 bins o barras en el histograma.\
+**density=True** normaliza el histograma para que el área total bajo la curva sea 1, lo que permite interpretarlo como una función de densidad de probabilidad (PDF).\
+**pdf = hist** asigna los valores del histograma a la variable pdf, que se utilizará para graficar la función de probabilidad.\
+**bin_centers** calcula el centro de cada bin, que se utilizará para el eje x de la gráfica del PDF.\
+**2.Creación de la figura y el histograma:**
+```ruby
 plt.figure(figsize=(10,4))
 plt.hist(signal, bins=30, alpha=0.75, color='b', edgecolor='black', density=True)
+```
+**plt.figure(figsize=(10,4))** crea una nueva figura con un tamaño de 10x4 pulgadas.\
+**plt.hist()** dibuja el histograma de la señal.\
+**alpha=0.75** controla la transparencia de las barras del histograma.\
+**density=True** asegura que el histograma esté normalizado.\
+**3. Graficación de la función de probabilidad, etiquetas y título:**
+```ruby
 plt.plot(bin_centers, pdf, marker='o', linestyle='-', color='r', label="Función de Probabilidad")
 plt.xlabel("Voltaje [mV]")
 plt.ylabel("Frecuencia")
@@ -125,7 +137,11 @@ plt.title("Histograma de la Señal EMG con Neuropatía")
 plt.grid()
 plt.show()
 ```
-La funciónn **np.histogram()** realiza el histograma de un arreglo de datos asignado, que en este caso es la variable **signal** 
+**plt.plot()** dibuja la función de probabilidad en la misma gráfica.\
+**bin_centers** proporciona los valores para el eje x.\
+**marker='o'** añade círculos como marcadores en los puntos de la gráfica.\
+**linestyle='-'** dibuja una línea continua entre los puntos.\
+Esta fracción genera un histograma de la señal y superpone la función de probabilidad estimada, lo que permite visualizar la distribución de los valores de la señal y tener una idea de la probabilidad de encontrar valores dentro de un rango determinado.
 ![histo_funpro](https://github.com/user-attachments/assets/2a1fd296-4f56-4edd-8484-4ce0f2f618ae)
 
 
@@ -210,6 +226,26 @@ plt.show()
 ```
 La línea **art_noise = signal[:]** genera una copia de la señal en el arreglo de la señal orginal, en el **for** se añaden 30 picos aleatorios donde se selecciona un índice aleatorio dentro del tamaño del arreglo **signal** en la línea **idx = random.randint(0, len(signal)-1)** y luego de esto se le añade el ruido por un número de forma aleatoria en un rango entre -2 y 2. La gráfica de esta señal será la que tenga más ruido ya que por los picos que pueden alcanzar un valor significativo la señal se verá más alterada y menos parecida a la original.\
 ![art_noise](https://github.com/user-attachments/assets/3bd63371-efb5-4a68-a926-cca48f29a2c5)
+## Resultados
+### Señal Original:
 
+- La señal original muestra la actividad eléctrica del músculo, con potenciales de acción (PA) que representan la contracción de las unidades motoras. Algunos PA parecen ser de menor amplitud y duración de lo normal indicando la neuropatía.
+* Se observan PA de diferentes amplitudes y duraciones, lo que indica la activación de diferentes unidades motoras.
++ La señal tiene un nivel de ruido de fondo bajo, lo que permite identificar claramente los PA.
+### Señal con Ruido Gaussiano:
+
+- El ruido Gaussiano se manifiesta como una fluctuación aleatoria en la señal, que se superpone a los PA.
+* El ruido reduce la relación señal-ruido (SNR), lo que dificulta la identificación de los PA más pequeños.
++ La forma general de la señal se conserva, pero los detalles de los PA se ven oscurecidos por el ruido.
+### Señal con Ruido de Impulso:
+
+- El ruido de impulso se caracteriza por la presencia de picos de alta amplitud y corta duración que aparecen de forma aleatoria.
+* Estos impulsos pueden enmascarar completamente los PA si ocurren en el mismo instante, o distorsionar su forma si se superponen parcialmente.
++ El ruido de impulso es especialmente problemático para el análisis de la señal, ya que puede simular la presencia de PA o alterar las mediciones de amplitud y duración.
+### Señal con Ruido de Artefacto:
+
+- Muestra una combinación de características de los dos tipos de ruido anteriores.
+* Se observan cambios aleatorios similares al ruido Gaussiano, pero también se presentan picos de alta amplitud como en el ruido de impulso.
++ Este tipo de ruido es el más complejo de eliminar, ya que no se ajusta a un modelo de ruido único.
 ![compare_signals](https://github.com/user-attachments/assets/a488e154-b873-4b87-9c93-b82facf7c245)
 
