@@ -154,7 +154,7 @@ plt.legend()
 plt.grid()
 plt.show()
 ```
-El ruido genera valores aleatorios con una distribución normal, por lo que su media está localizada en 0 y se tiene en cuenta la desviación de la señal original para generar el ruido a partir de esta en el comando **scale=np.std(signal)*0.01**. Después de generar el ruido se le añade a la señal original y se grafíca, y a su vez se calcula el respectivo SNR.
+El ruido genera valores aleatorios con una distribución normal, por lo que su media está localizada en 0 y se tiene en cuenta la desviación de la señal original para generar el ruido a partir de esta en el comando **scale=np.std(signal)0.01**. Después de generar el ruido se le añade a la señal original y se grafíca, y a su vez se calcula el respectivo SNR.\
 ![gauss_noise](https://github.com/user-attachments/assets/cb3e6d23-6c94-49b9-adae-abe9787ed489)
 
 
@@ -180,7 +180,7 @@ plt.legend()
 plt.grid(True)
 plt.show()
 ```
-En este código se agrega aleatoriamente un número entre -1 y 1 con una probabilidad del 5%. Luego de esto se añade a la señal original y se calcula la potencia de ambas para el SNR y se genera la gráfia correspondiente.
+En este código se agrega aleatoriamente un número entre -1 y 1 con una probabilidad del 5%. Luego de esto se añade a la señal original y se calcula la potencia de ambas para el SNR y se genera la gráfia correspondiente.\
 ![imp_noise](https://github.com/user-attachments/assets/3fb4f5f9-9e84-4812-9b62-efb9d209c7bb)
 
 
@@ -208,7 +208,7 @@ plt.ylabel("Voltaje [mV]")
 plt.grid(True)
 plt.show()
 ```
-La línea **art_noise = signal[:]** genera una copia de la señal en el arreglo de la señal orginal, en el **for** se añaden 30 picos aleatorios donde se selecciona un índice aleatorio dentro del tamaño del arreglo **signal** en la línea **idx = random.randint(0, len(signal)-1)** y luego de esto se le añade el ruido por un número de forma aleatoria en un rango entre -2 y 2. La gráfica de esta señal será la que tenga más ruido ya que por los picos que pueden alcanzar un valor significativo la señal se verá más alterada y menos parecida a la original. 
+La línea **art_noise = signal[:]** genera una copia de la señal en el arreglo de la señal orginal, en el **for** se añaden 30 picos aleatorios donde se selecciona un índice aleatorio dentro del tamaño del arreglo **signal** en la línea **idx = random.randint(0, len(signal)-1)** y luego de esto se le añade el ruido por un número de forma aleatoria en un rango entre -2 y 2. La gráfica de esta señal será la que tenga más ruido ya que por los picos que pueden alcanzar un valor significativo la señal se verá más alterada y menos parecida a la original.\
 ![art_noise](https://github.com/user-attachments/assets/3bd63371-efb5-4a68-a926-cca48f29a2c5)
 
 ![compare_signals](https://github.com/user-attachments/assets/a488e154-b873-4b87-9c93-b82facf7c245)
