@@ -201,3 +201,4 @@ plt.ylabel("Voltaje [mV]")
 plt.grid(True)
 plt.show()
 ```
+![compare_signals](https://github.com/user-attachments/assets/a488e154-b873-4b87-9c93-b82facf7c245)
