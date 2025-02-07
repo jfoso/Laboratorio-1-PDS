@@ -130,5 +130,69 @@ La funciónn **np.histogram()** realiza el histograma de un arreglo de datos asi
 ### Generación de ruido y el SNR
 Para este laboratorio se contaminó la señal con tres tipos de ruido: Gaussiano, de impulso y de artefacto.\
 El ruido Gaussiano está asociado a la radiación electromagnética y es aquel que tiene una distribución normal (tiene una tendencia similar a la campana de Gauss), el ruido de impulso es el que tiene picos de alta amplitud pero de corta duración y el ruido de artefactos es el que producen elementos externos como corrientes eléctricas o, en el caso de la adquisición de señales biológicas, piel o corriente de otro tipo de señales. Para discernir entre cuánto hay de señal y cuánto hay de ruido en la toma de una señal, existe el SNR, el cual por sus siglas en inglés (Signal to Noise Ratio) establece la cantidad de información útil hay en una medición respecto al ruido. Esta relación está dada por la ecuación $SNR = 10 \times \log_{10}(\frac{potencia de la señal}{potencia del ruido})$
+**Ruido Gaussiano**
+Mediante la la biblioteca NumPy para generar ruido Gaussiano y añadirlo a la señal, calculando su SNR y visualizando la señal con ruido.
+```ruby
+#Generar ruido Gaussiano
+noise = np.random.normal(loc=0,scale=np.std(signal)*0.01, size=signal.shape)
+signal_gauss = signal + noise
+potencia_signal = np.mean(signal**2)
+potencia_gauss = np.mean(noise**2)
+SNRg = 10*np.log10(potencia_signal/potencia_gauss)
+print("\nSNR Gaussiano: ",SNRg,"dB")
 
+plt.figure(figsize=(10, 4))
+#plt.plot(time, signal, label="Señal Original", alpha=0.8)
+plt.plot(time, signal_gauss, label="Señal con Ruido")
+plt.xlabel("Tiempo [s]")
+plt.ylabel("Voltaje [mV]")
+plt.title("Señal neuropática con Ruido Gaussiano")
+plt.legend()
+plt.grid()
+plt.show()
+```
 
+**Ruido de impulso**
+```ruby
+##Ruido de impulso
+imp_noise = [random.uniform(-1,1) if random.random()<0.05 else 0 for _ in range(len(signal))]
+signal_imp = [signal[i] + imp_noise[i] for i in range(len(signal))]
+
+potenciai = np.mean(signal**2)
+impulso = signal_imp-signal
+ruidoi = np.mean(impulso**2)
+SNRi = 10 * np.log10(potenciai / ruidoi)
+print("\nSNR Impulso: ",SNRi,"dB")
+
+plt.figure(figsize=(10, 4))
+plt.plot(signal_imp, label="Señal con Ruido de Impulso")
+plt.title("Señal con Ruido de Impulso")
+plt.xlabel("Tiempo [s]")
+plt.ylabel("Voltaje [mV]")
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+**Ruido de aparato**
+```ruby
+#Generar ruido de aparato
+art_noise = signal[:]
+for _ in range(30):
+    idx = random.randint(0, len(signal)-1)
+    art_noise[idx] += random.uniform(-2,2)
+signal_art = art_noise 
+
+potenciase = np.mean(signal**2)
+potenciart = np.mean(art_noise[idx]**2)
+SNRa = 10*np.log10(potenciase/potenciart)
+print("\nSNR Artefacto: ",SNRa,"dB")
+
+plt.figure(figsize=(10,4))
+plt.plot(time, signal_art)
+plt.title("Señal con ruido de artefacto")
+plt.xlabel("Tiempo [s]")
+plt.ylabel("Voltaje [mV]")
+#plt.legend()
+plt.grid(True)
+plt.show()
+```
