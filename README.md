@@ -2,7 +2,11 @@
 ## OBJETIVO
 El presente laboratorio tiene como objetivo desarrollar habilidades para obtener, procesar y visualizar señales biomédicas utilizando herramientas de programación como Python mediante librerías específicas como Matplotlib y calcular e interpretar estadísticos descriptivos clave (media, desviación estándar, coeficiente de variación, histogramas y función de probabilidad) que permitan describir las características de las señales biomédicas.
 ## Procedimiento
-La señal biomédica a estudiar se obtuvo a partir de bases de datos de señales fisiológicas, en este caso physionet, obteniendo así una señal EMG con una neuropatía,seguido a esto se importó la señal a python. Para adquirir la señal se importaron tres librerias especificas: WFDB (Waveform DataBase): Esta librería es crucial para trabajar con datos de señales fisiológicas, como electrocardiogramas (ECG), electromiogramas (EMG) esta permite leer y esrcibir señales digitalizadas, Matplotlib: se utiliza para crear gráficos y visualizaciones de datos, NumPy: es fundamental para trabajar con arrays y matrices numéricas. Al importar estas librerias empezamos a realizar nuestro codigo para adquirir los datos de la señal descargada de la siguiente manera:
+La señal biomédica a estudiar se obtuvo a partir de bases de datos de señales fisiológicas, en este caso physionet, obteniendo así una señal EMG con una neuropatía,seguido a esto se importó la señal a python. Para adquirir la señal se importaron tres librerias especificas: 
+- WFDB (Waveform DataBase): Esta librería es crucial para trabajar con datos de señales fisiológicas, como electrocardiogramas (ECG), electromiografías (EMG) esta permite leer y esrcibir señales digitalizadas. 
+* Matplotlib: se utiliza para crear gráficos y visualizaciones de datos.
++ NumPy: es fundamental para trabajar con arrays y matrices numéricas.\
+Al importar estas librerias empezamos a realizar nuestro codigo para adquirir los datos de la señal descargada de la siguiente manera:
 ```ruby
 import wfdb
 import matplotlib.pyplot as plt
