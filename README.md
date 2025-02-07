@@ -131,7 +131,7 @@ La funciónn **np.histogram()** realiza el histograma de un arreglo de datos asi
 Para este laboratorio se contaminó la señal con tres tipos de ruido: Gaussiano, de impulso y de artefacto.\
 El ruido Gaussiano está asociado a la radiación electromagnética y es aquel que tiene una distribución normal (tiene una tendencia similar a la campana de Gauss), el ruido de impulso es el que tiene picos de alta amplitud pero de corta duración y el ruido de artefactos es el que producen elementos externos como corrientes eléctricas o, en el caso de la adquisición de señales biológicas, piel o corriente de otro tipo de señales. Para discernir entre cuánto hay de señal y cuánto hay de ruido en la toma de una señal, existe el SNR, el cual por sus siglas en inglés (Signal to Noise Ratio) establece la cantidad de información útil hay en una medición respecto al ruido. Esta relación está dada por la ecuación $SNR = 10 \times \log_{10}(\frac{potencia de la señal}{potencia del ruido})$\
 **Ruido Gaussiano**\
-Mediante la la biblioteca NumPy para generar ruido Gaussiano y añadirlo a la señal, calculando su SNR y visualizando la señal con ruido.
+Se refiere a un tipo específico de ruido que se caracteriza por tener una distribución de probabilidad normal o gaussiana. En otras palabras, los valores de este ruido se distribuyen de forma simétrica alrededor de un valor promedio, y la probabilidad de encontrar valores alejados de este promedio disminuye exponencialmente.
 ```ruby
 #Generar ruido Gaussiano
 noise = np.random.normal(loc=0,scale=np.std(signal)*0.01, size=signal.shape)
@@ -152,7 +152,8 @@ plt.grid()
 plt.show()
 ```
 
-**Ruido de impulso**
+**Ruido de impulso**\
+Se refiere a un tipo de interferencia que se caracteriza por ser de corta duración y alta amplitud. Estos impulsos de ruido pueden aparecer de forma repentina y aislada o pueden ocurrir de manera repetitiva a intervalos regulares o irregulares.
 ```ruby
 ##Ruido de impulso
 imp_noise = [random.uniform(-1,1) if random.random()<0.05 else 0 for _ in range(len(signal))]
@@ -173,7 +174,8 @@ plt.legend()
 plt.grid(True)
 plt.show()
 ```
-**Ruido de aparato**
+**Ruido de aparato**\
+Se refiere a las interferencias o señales no deseadas que pueden ser generadas por el propio equipo de medición o sus componentes. Estas señales pueden contaminar la señal EMG real, dificultando su interpretación y análisis.
 ```ruby
 #Generar ruido de aparato
 art_noise = signal[:]
