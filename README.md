@@ -249,3 +249,7 @@ La línea **art_noise = signal[:]** genera una copia de la señal en el arreglo 
 + Este tipo de ruido es el más complejo de eliminar, ya que no se ajusta a un modelo de ruido único.
 ![compare_signals](https://github.com/user-attachments/assets/a488e154-b873-4b87-9c93-b82facf7c245)
 
+## Contacto
+est.santiagoa.caro@unimilitar.edu.co
+est.carol.trivino@unimilitar.edu.co
+est.juan.fosorio@unimilitar.edu.co
