@@ -126,6 +126,9 @@ plt.grid()
 plt.show()
 ```
 La funciónn **np.histogram()** realiza el histograma de un arreglo de datos asignado, que en este caso es la variable **signal** 
+![histo_funpro](https://github.com/user-attachments/assets/2a1fd296-4f56-4edd-8484-4ce0f2f618ae)
+
+
 
 ### Generación de ruido y el SNR
 Para este laboratorio se contaminó la señal con tres tipos de ruido: Gaussiano, de impulso y de artefacto.\
